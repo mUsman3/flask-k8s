@@ -14,9 +14,9 @@ node {
                         //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                         sh "git config user.email usman59228@gmail.com"
                         sh "git config user.name musman3"
-                        sh "cat deployment.yaml"
-                        sh "sed -i 's+nginx.*+musman3/flask-k8s:${DOCKERTAG}+g' deployment.yaml"
-                        sh "cat deployment.yaml"
+                        sh "cat deployment.yml"
+                        sh "sed -i 's+nginx.*+musman3/flask-k8s:${DOCKERTAG}+g' deployment.yml"
+                        sh "cat deployment.yml"
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
                         sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/kubernetesmanifest.git HEAD:main"
