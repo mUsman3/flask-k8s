@@ -19,7 +19,7 @@ spec:
       containers:
         - name: quote
           # image: docker.io/datawire/quote:0.4.1
-          image:  nginx
+          image:  musman3/flask-k8s:latest
           ports:
             - name: http
               containerPort: 80
