@@ -3,14 +3,14 @@ kind: Ingress
 metadata:
   name: ingress-quote
   namespace: backend
-  annotations:
-    cert-manager.io/issuer: letsencrypt-nginx
+  # annotations:
+  #   cert-manager.io/issuer: letsencrypt-nginx
 
 spec:
-  tls:
-    - hosts:
-      - usman.abacuslanguages.co.uk  
-      secretName: letsencrypt-nginx
+  # tls:
+  #   - hosts:
+  #     - usman.abacuslanguages.co.uk  
+  #     secretName: letsencrypt-nginx
   rules:
     - host: usman.abacuslanguages.co.uk
       http:
@@ -23,4 +23,15 @@ spec:
                 port:
                   # number: 8080
                   number: 80
+    # - host: api.abacuslanguages.co.uk
+    #   http:
+    #     paths:
+    #       - path: /
+    #         pathType: Prefix
+    #         backend:
+    #           service:
+    #             name: quote-backend
+    #             port:
+    #               # number: 8080
+    #               number: 8080
   ingressClassName: nginx

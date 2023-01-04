@@ -2,27 +2,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quote
+  name: quote-backend
   namespace: backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: quote
+      app: quote-backend
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: quote
+        app: quote-backend
     spec:
       containers:
-        - name: quote
+        - name: quote-backend
           # image: docker.io/datawire/quote:0.4.1
-          image: musman3/frontend:6
+          image: musman3/backend
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: 8080
           resources:
             requests:
               cpu: 100m
@@ -30,4 +30,3 @@ spec:
             limits:
               cpu: 200m
               memory: 100Mi
-        
