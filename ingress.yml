@@ -1,37 +1,60 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: ingress-quote
+#   namespace: backend
+#   # annotations:
+#   #   cert-manager.io/issuer: letsencrypt-nginx
+
+# spec:
+#   # tls:
+#   #   - hosts:
+#   #     - usman.abacuslanguages.co.uk  
+#   #     secretName: letsencrypt-nginx
+#   rules:
+#     - host: usman.abacuslanguages.co.uk
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: quote
+#                 port:
+#                   # number: 8080
+#                   number: 80
+#     # - host: api.abacuslanguages.co.uk
+#     #   http:
+#     #     paths:
+#     #       - path: /
+#     #         pathType: Prefix
+#     #         backend:
+#     #           service:
+#     #             name: quote-backend
+#     #             port:
+#     #               # number: 8080
+#     #               number: 8080
+#   ingressClassName: nginx
+
+
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-quote
+  name: ingress-services
   namespace: backend
-  # annotations:
-  #   cert-manager.io/issuer: letsencrypt-nginx
-
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    
 spec:
-  # tls:
-  #   - hosts:
-  #     - usman.abacuslanguages.co.uk  
-  #     secretName: letsencrypt-nginx
-  rules:
-    - host: usman.abacuslanguages.co.uk
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: quote
-                port:
-                  # number: 8080
-                  number: 80
-    # - host: api.abacuslanguages.co.uk
-    #   http:
-    #     paths:
-    #       - path: /
-    #         pathType: Prefix
-    #         backend:
-    #           service:
-    #             name: quote-backend
-    #             port:
-    #               # number: 8080
-    #               number: 8080
   ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: quote
+            port:
+              number: 80
