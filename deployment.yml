@@ -19,7 +19,7 @@ spec:
       containers:
         - name: quote
           # image: docker.io/datawire/quote:0.4.1
-          image: musman3/flask-k8s:6
+          image: musman3/flask-k8s:4
           ports:
             - name: http
               containerPort: 5000
