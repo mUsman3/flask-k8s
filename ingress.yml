@@ -1,3 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-services
+  namespace: backend
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  ingressClassName: alb
+  rules:
+    - host: flask.kuli.lol
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: quote
+                port:
+                  number: 80
+
+
+
+
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress
 # metadata:
@@ -37,24 +62,24 @@
 #   ingressClassName: nginx
 
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ingress-services
-  namespace: backend
-  annotations:
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: ingress-services
+#   namespace: backend
+#   annotations:
+#     nginx.ingress.kubernetes.io/use-regex: "true"
+#     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     
-spec:
-  ingressClassName: nginx
-  rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: quote
-            port:
-              number: 80
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#   - http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: quote
+#             port:
+#               number: 80
