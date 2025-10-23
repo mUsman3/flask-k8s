@@ -19,6 +19,16 @@ spec:
                 name: quote
                 port:
                   number: 80
+    - host: app.usman.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: quote
+                port:
+                  number: 80
 
 
 
